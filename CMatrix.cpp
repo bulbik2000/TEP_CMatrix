@@ -182,7 +182,7 @@ CMatrix CMatrix::substract(CMatrix &matrix){
     }
 }
 
-//TRANSPONOWANA
+//TRANSPOSITION
 CMatrix CMatrix::transpose(){
     CMatrix res(sizeY,sizeX);
     for(int i = 0; i < sizeX; i++ ){
