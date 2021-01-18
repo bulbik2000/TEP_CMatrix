@@ -2,48 +2,62 @@
 #include "CMatrix.h"
 #include <string>
 using namespace std;
-#include <fstream>
 
 
-int main() {
+void multiplyMatrices(){
+    CMatrix<int> matrix1(5,3);
+    CMatrix<int> matrix2(3,2);
 
+    CMatrix<int> res(1,1);
 
-    /*WEKTOROWA
-    CMatrix matrix_wiektorowa_1(1,5);
-    CMatrix matrix_wiektorowa_2(1,5);
+    res=(matrix1*matrix2);
+    res.printMatrix();
+}
 
-    matrix_wiektorowa_1.printMatrix();
+void substractMatrices(){
+    CMatrix<int> matrix1(5,3);
+    CMatrix<int> matrix2(5,3);
 
-    cout << matrix_wiektorowa_1.getValueAt(0, 5);
+    matrix1.setValueAt(-100,2,2);
+    matrix2.setValueAt(-120,2,2);
 
-    //int res = matrix_wiektorowa_1.scalarOfVectors(matrix_wiektorowa_2);
+    CMatrix<int> res(1,1);
 
-    //cout << res;
+    //res=(matrix1-matrix2);
+    res.printMatrix();
+}
 
-
-    //matrix_wiektorowa_1.printMatrix();
-    */
-
-    CMatrix matrix1(5,3);
-    //CMatrix matrix2(2,4);
-    CMatrix matrix2(3,2);
-
-    CMatrix vectorX = matrix1.getVectorFromRow(3);
-    CMatrix vectorY = matrix1.getVectorFromCol(1);
-
-
+void transposeMatrix(){
+    CMatrix<int> matrix1(5,3);
     matrix1.printMatrix();
+    matrix1.transpose().printMatrix();
+}
+
+void scalar(){
+    CMatrix<int> vector_1(1,5);
+    CMatrix<int> vector_2(1,5);
+
+    cout << vector_1.scalarOfVectors(vector_2);
+}
+
+void vectorsFromMatrix(){
+    CMatrix<int> matrix1(5,3);
+
+    CMatrix<int> vectorX = matrix1.getVectorFromRow(3);
+    CMatrix<int> vectorY = matrix1.getVectorFromCol(1);
 
     vectorX.printMatrix();
     vectorY.printMatrix();
+}
 
-    //matrix1.setValueAt(10, 2, 2);
+void readFromFile(){
+    CMatrix<float> matrix = CMatrix<float>::readFromFile("../floatMatrix.txt");
+    matrix.printMatrix();
+}
 
-    //CMatrix res = matrix1.substract(matrix2);
+int main() {
+    //multiplyMatrices();
 
-    CMatrix res = matrix1.transpose();
-
-    //res.printMatrix();
-
+    readFromFile();
     return 0;
 }

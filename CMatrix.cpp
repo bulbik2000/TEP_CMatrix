@@ -4,11 +4,12 @@
 #include "CMatrix.h"
 #include <string>
 using namespace std;
-#include <cmath>;
+
 
 //const int CMatrix::DEF_VAL=2;
-
-CMatrix::CMatrix(int x, int y)
+/*
+template <typename T>
+CMatrix<T>::CMatrix(int x, int y)
         : sizeX(x),
           sizeY(y)
 {
@@ -27,13 +28,15 @@ CMatrix::CMatrix(int x, int y)
     }
 }
 
-CMatrix::~CMatrix(){
+template <typename T>
+CMatrix<T>::~CMatrix(){
     for (int i = 0; i < sizeX; i++)
         delete [] matrix[i];
     delete [] matrix;
 }
 
-void CMatrix::printMatrix(){
+template <typename T>
+void CMatrix<T>::printMatrix(){
     for(int i = 0; i < sizeX; i++){
         cout << "\n";
         for(int ii = 0; ii < sizeY; ii++){
@@ -45,7 +48,8 @@ void CMatrix::printMatrix(){
 }
 
 //SETTERS
-bool CMatrix::setValueAt(int value, int x, int y){
+template <typename T>
+bool CMatrix<T>::setValueAt(T value, int x, int y){
 
     if( x<0 || x>=sizeX){
         return false;
@@ -58,7 +62,8 @@ bool CMatrix::setValueAt(int value, int x, int y){
     return true;
 }
 
-bool CMatrix::setRowAt(int* row , int row_size ,int x){
+template <typename T>
+bool CMatrix<T>::setRowAt(int* row , int row_size ,int x){
     if( x<sizeX && (row_size<sizeY) ){
         return true;
     }
@@ -67,16 +72,19 @@ bool CMatrix::setRowAt(int* row , int row_size ,int x){
 
 //GETTERS
 //GetSize
-int CMatrix::getX(){
+template <typename T>
+int CMatrix<T>::getX(){
     return this->sizeX;
 }
 
-int CMatrix::getY(){
+template <typename T>
+int CMatrix<T>::getY(){
     return this->sizeY;
 }
 
 //Val at Pos
-int CMatrix::getValueAt(int x, int y){
+template <typename T>
+T CMatrix<T>::getValueAt(int x, int y){
     if( x<0 || x>=sizeX){
         return -100;
     }
@@ -89,7 +97,8 @@ int CMatrix::getValueAt(int x, int y){
 
 //Get Vectors From Matrix
 
-CMatrix CMatrix::getVectorFromRow(int x)
+template <typename T>
+CMatrix<T> CMatrix<T>::getVectorFromRow(int x)
 {
     if( x < sizeX )
     {
@@ -102,7 +111,8 @@ CMatrix CMatrix::getVectorFromRow(int x)
     }
 }
 
-CMatrix CMatrix::getVectorFromCol(int y)
+template <typename T>
+CMatrix<T> CMatrix<T>::getVectorFromCol(int y)
 {
     if( y < sizeY )
     {
@@ -118,10 +128,11 @@ CMatrix CMatrix::getVectorFromCol(int y)
 //OPERATIONS
 
 //MULTIPLICATION
-CMatrix CMatrix::multiply(CMatrix &matrix){
+template <typename T>
+CMatrix<T> CMatrix<T>::multiply(CMatrix<T> &matrix){
     if( sizeY == matrix.sizeX ) {
         //Result matrix
-        CMatrix res(sizeX,matrix.sizeY);
+        CMatrix<T> res(sizeX,matrix.sizeY);
         //Naive algorithm O(n^3)
         for (int i = 0; i < sizeX; i++){
             for(int j = 0; j < matrix.sizeY ; j++){
@@ -138,9 +149,10 @@ CMatrix CMatrix::multiply(CMatrix &matrix){
 }
 
 //MULTIPLICATION BY NUMBER
-CMatrix CMatrix::multiplyByNumber(int number){
+template <typename T>
+CMatrix<T> CMatrix<T>::multiplyByNumber(T number){
         //Result matrix
-        CMatrix res(sizeX,sizeY);
+        CMatrix<T> res(sizeX,sizeY);
         for(int i = 0; i < sizeX; i++){
             for(int ii = 0; ii < sizeY; ii++){
                 matrix[i][ii]*=number;
@@ -150,10 +162,11 @@ CMatrix CMatrix::multiplyByNumber(int number){
 }
 
 //ADDITION
-CMatrix CMatrix::add(CMatrix &matrix){
+template <typename T>
+CMatrix<T> CMatrix<T>::add(CMatrix<T> &matrix){
     if( (sizeX == matrix.sizeX) && (sizeY == matrix.sizeY) ) {
         //Result matrix
-        CMatrix res(sizeX,sizeY);
+        CMatrix<T> res(sizeX,sizeY);
 
         for (int i = 0; i < sizeX; i++){
             for(int j = 0; j < sizeY ; j++){
@@ -166,10 +179,11 @@ CMatrix CMatrix::add(CMatrix &matrix){
 }
 
 //SUBSTRACTION
-CMatrix CMatrix::substract(CMatrix &matrix){
+template <typename T>
+CMatrix<T> CMatrix<T>::substract(CMatrix<T> &matrix){
     if( (sizeX == matrix.sizeX) && (sizeY == matrix.sizeY) ) {
         //Result matrix
-        CMatrix res(sizeX,sizeY);
+        CMatrix<T> res(sizeX,sizeY);
 
         for (int i = 0; i < sizeX; i++){
             for(int j = 0; j < sizeY ; j++){
@@ -183,7 +197,8 @@ CMatrix CMatrix::substract(CMatrix &matrix){
 }
 
 //TRANSPOSITION
-CMatrix CMatrix::transpose(){
+template <typename T>
+CMatrix<T> CMatrix<T>::transpose(){
     CMatrix res(sizeY,sizeX);
     for(int i = 0; i < sizeX; i++ ){
         for(int j = 0; j < sizeY; j++ ) {
@@ -194,9 +209,10 @@ CMatrix CMatrix::transpose(){
 }
 
 //SCALAR
-int CMatrix::scalarOfVectors(CMatrix &matrix){
+template <typename T>
+T CMatrix<T>::scalarOfVectors(CMatrix<T> &matrix){
     if( (sizeX==1) && (sizeX==matrix.sizeX) && (sizeY==matrix.sizeY)){
-        int sum = 0;
+        T sum = 0;
         for(int i = 0; i < sizeY; i++){
             sum += (this->matrix[0][i] * matrix.matrix[0][i]);
         }
@@ -204,7 +220,7 @@ int CMatrix::scalarOfVectors(CMatrix &matrix){
     }else{
         return 0;
     }
-}
+}*/
 
 
 
